@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alienware 16 Aurora com RTX 4050 para Warzone: análise do loadout</title>
+<meta name="description" content="Análise independente do notebook Alienware 16 Aurora com RTX 4050, tela de 120 Hz e Wi-Fi 7 para quem joga Warzone e outros FPS competitivos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Chakra+Petch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E6E9F0;--bg-2:#D9DEE9;--panel:#F3F5F9;--ink:#0E1433;--ink-2:#4A5378;--line:#B7BFD3;
+  --amber:#FFB23F;--amber-ink:#9A5A00;--on-amber:#1A1206;--shell:#1B2350;--shell-edge:#2E3A74;
+  --f-display:"Chakra Petch","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A0F26;--bg-2:#0E1535;--panel:#131B42;--ink:#DDE2EE;--ink-2:#8F98B9;--line:#28325F;
+    --amber-ink:#FFB23F;--shell:#1A2252;--shell-edge:#35417F;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A0F26;--bg-2:#0E1535;--panel:#131B42;--ink:#DDE2EE;--ink-2:#8F98B9;--line:#28325F;
+  --amber-ink:#FFB23F;--shell:#1A2252;--shell-edge:#35417F;color-scheme:dark;
+}
+@property --gap{syntax:'<length>';inherits:true;initial-value:5px}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:clamp(16px,.6vw + 12px,18px);line-height:1.55;overflow-x:clip}
+svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;margin:0;line-height:1;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.wrap{width:min(1200px,100% - clamp(32px,6vw,96px));margin-inline:auto}
+
+/* botões */
+.btn{position:relative;z-index:0;display:inline-flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:600;font-size:17px;color:var(--on-amber);text-decoration:none;padding:15px 24px;transition:transform .25s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--amber);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:background-color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn:hover::before{background:#FFC66E}
+.btn svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.btn:hover svg{transform:translate(3px,-3px)}
+.link{font-family:var(--f-display);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:3px;transition:border-color .2s}
+.link:hover{border-color:var(--amber)}
+
+/* barras segmentadas */
+.seg{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;height:10px}
+.seg i{background:var(--line);border-radius:1px;transform-origin:50% 100%}
+.seg i.lit{background:var(--amber)}
+
+/* navegação real */
+.site-nav{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid transparent;transition:border-color .25s,background-color .25s}
+.site-nav.solid{border-color:var(--line);background:color-mix(in srgb,var(--bg) 92%,transparent)}
+.site-nav .row{display:flex;align-items:center;justify-content:space-between;gap:20px;height:56px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--f-display);font-weight:600;font-size:15px;flex:none}
+.brand i{width:9px;height:9px;background:var(--amber);flex:none}
+.nlinks{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nlinks::-webkit-scrollbar{display:none}
+.nlink{all:unset;flex:none;font-family:var(--f-display);font-weight:500;font-size:14px;color:var(--ink-2);padding:8px 14px;cursor:pointer;position:relative;transition:color .2s}
+.nlink:hover{color:var(--ink)}
+.nlink::after{content:"";position:absolute;left:14px;right:14px;bottom:3px;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:0 50%;transition:transform .25s var(--ease)}
+.nlink.on{color:var(--ink)}
+.nlink.on::after{transform:scaleX(1)}
+.nlink:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.ncta{flex:none;font-family:var(--f-display);font-weight:600;font-size:13px;color:var(--on-amber);background:var(--amber);padding:8px 14px;text-decoration:none;border-radius:3px;white-space:nowrap}
+@media (max-width:760px){
+  .site-nav .row{height:50px;gap:8px}
+  .brand span{display:none}
+  .nlinks{flex:1;min-width:0;justify-content:flex-start;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .nlink{padding:7px 10px;font-size:13px}
+  .ncta{padding:7px 12px;font-size:12px}
+}
+
+/* especificações completas */
+.specs{padding-block:clamp(72px,12vh,140px);background:var(--bg-2)}
+.specs h2{font-size:clamp(30px,3.6vw,50px);max-width:16ch}
+.specs .intro{margin-top:14px;color:var(--ink-2);max-width:52ch}
+.sgroups{margin-top:clamp(32px,5vh,56px);display:grid;gap:clamp(28px,4vh,44px)}
+.sgroup-h{font-family:var(--f-display);font-weight:600;font-size:13px;color:var(--amber-ink);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.scards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line)}
+.scard{background:var(--panel);padding:20px 18px}
+.scard .k{font-size:13px;color:var(--ink-2)}
+.scard .v{margin-top:8px;font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2vw,26px);line-height:1.1}
+.scard .u{font-size:13px;color:var(--ink-2);margin-left:4px;font-weight:500}
+@media (max-width:760px){.scards{grid-template-columns:1fr 1fr}}
+
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 88px;opacity:.35;-webkit-mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 30%,#000 70%,transparent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;font-size:14px;color:var(--ink-2)}
+.top .link{color:var(--ink);border-bottom:2px solid var(--amber)}
+.hero-grid{flex:1;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,64px);align-items:center;padding-bottom:clamp(24px,6vh,64px)}
+.copy{display:grid}
+.copy>.state{grid-area:1/1;align-self:center}
+.big{font-family:var(--f-display);font-weight:700;font-size:clamp(46px,6.2vw,92px);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+.hint{display:flex;align-items:center;gap:12px;margin-top:28px;color:var(--ink-2);font-size:15px}
+.mouse{width:22px;height:34px;border:2px solid var(--ink-2);border-radius:12px;position:relative;flex:none}
+.mouse::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--amber);animation:wheel 1.6s var(--ease) infinite}
+@keyframes wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+.tag{font-size:15px;color:var(--ink-2);margin-bottom:14px}
+.state h1{font-size:clamp(44px,5.6vw,84px);font-weight:700;line-height:.95;letter-spacing:-.02em}
+.lead{margin-top:18px;max-width:44ch;color:var(--ink-2)}
+.stats{margin:26px 0 0;padding:0;list-style:none;display:grid;gap:10px;max-width:430px}
+.stats li{display:grid;grid-template-columns:5.2em minmax(0,1fr) 5.4em;align-items:center;gap:12px;font-size:14px}
+.stats .k{color:var(--ink-2)}
+.stats .v{font-family:var(--f-display);font-weight:600;text-align:right}
+.actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:30px}
+
+/* notebook desenhado */
+.rig{position:relative;width:100%;max-width:760px;justify-self:center;perspective:1700px;perspective-origin:50% 15%;padding-bottom:36px}
+.lid{position:relative;aspect-ratio:16/10.6;background:var(--shell);border:1px solid var(--shell-edge);border-radius:16px 16px 4px 4px;padding:2.2% 2.2% 3.2%;transform-origin:50% 100%;will-change:transform}
+.lid::after{content:"";position:absolute;top:.8%;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#070A1C}
+.screen{position:relative;width:100%;height:100%;border-radius:4px;overflow:hidden;background-color:#070B20;background-image:linear-gradient(rgba(125,145,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(125,145,255,.07) 1px,transparent 1px);background-size:6.25% 10%;color:#C9D1EC;font-family:var(--f-display);font-size:clamp(9px,1.05vw,14px)}
+.scan{position:absolute;left:0;right:0;top:-30%;height:30%;background:linear-gradient(transparent,rgba(255,178,63,.07),transparent);animation:scan 4s linear infinite}
+@keyframes scan{to{top:100%}}
+.ro{position:absolute;display:grid;gap:2px;line-height:1.1;font-weight:600}
+.ro small{font-family:var(--f-body);font-weight:400;color:#7E88AE;font-size:.8em}
+.ro.tl{top:6%;left:4%}.ro.tr{top:6%;right:4%;text-align:right}.ro.bl{bottom:7%;left:4%}.ro.br{bottom:7%;right:4%;text-align:right}
+.ch{position:absolute;left:50%;top:45%;width:19%;transform:translate(-50%,-50%)}
+.ready{position:absolute;left:0;right:0;top:64%;text-align:center;color:#FFB23F;font-weight:600}
+.deck{position:relative;height:clamp(12px,2.1vw,22px);margin:0 -5%;background:var(--shell-edge);clip-path:polygon(2.5% 0,97.5% 0,100% 100%,0 100%)}
+.deck::after{content:"";position:absolute;top:0;left:43%;width:14%;height:38%;background:var(--shell);border-radius:0 0 8px 8px}
+.glow{position:absolute;left:4%;right:4%;bottom:4px;height:56px;background:radial-gradient(closest-side,rgba(255,178,63,.3),transparent);pointer-events:none}
+
+/* transparência */
+.strip{border-block:1px solid var(--line);padding-block:16px;font-size:14px;color:var(--ink-2)}
+.strip strong{color:var(--ink);font-weight:500}
+
+/* loadout */
+.equip{min-height:100svh;display:flex;align-items:center;padding-block:clamp(40px,8vh,96px);background:var(--bg-2)}
+.equip-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:center}
+.equip h2{font-size:clamp(34px,4.2vw,60px)}
+.intro{margin-top:14px;color:var(--ink-2);max-width:40ch}
+.count{margin-top:22px;font-family:var(--f-display);font-weight:600;font-size:15px}
+.count b{color:var(--amber-ink);font-weight:700;font-size:1.35em}
+.slots{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
+.slot{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:14px;align-items:center;padding:13px 4px;border-bottom:1px solid var(--line);cursor:pointer;color:var(--ink-2);transition:color .25s,padding .35s var(--ease),border-color .25s}
+.slot:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.slot:hover{color:var(--ink)}
+.slot .mark{width:12px;height:12px;border:1.5px solid var(--ink-2);transition:background-color .25s,border-color .25s}
+.slot.on .mark{background:var(--amber);border-color:var(--amber)}
+.slot.active{color:var(--ink);padding-left:14px}
+.slot-short{font-family:var(--f-display);font-weight:600}
+.detail{position:relative;background:var(--panel);border:1px solid var(--line);padding:clamp(22px,3.2vw,48px)}
+.detail::before,.detail::after{content:"";position:absolute;width:26px;height:26px;border:3px solid var(--amber)}
+.detail::before{top:-3px;left:-3px;border-right:0;border-bottom:0}
+.detail::after{bottom:-3px;right:-3px;border-left:0;border-top:0}
+.d-slot{font-size:15px;color:var(--ink-2)}
+.d-short{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(52px,7.4vw,112px);line-height:.9;letter-spacing:-.03em;margin-top:10px}
+.d-spec{margin-top:16px;font-family:var(--f-display);font-weight:500;font-size:clamp(16px,1.4vw,19px)}
+.d-text{margin-top:12px;color:var(--ink-2);max-width:52ch;min-height:4.8em}
+.d-bar{margin-top:24px;height:14px;max-width:360px}
+.d-note{margin-top:10px;font-size:14px;color:var(--ink-2)}
+
+/* matchup */
+.match{padding-block:clamp(72px,12vh,140px)}
+.match h2{font-size:clamp(32px,4vw,56px);max-width:17ch}
+.match-grid{margin-top:clamp(32px,5vh,56px);display:grid;grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:clamp(24px,4vw,64px)}
+.split{background:var(--line)}
+.col h3{font-size:clamp(20px,1.8vw,26px)}
+.col.no h3{color:var(--ink-2)}
+.col ul{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:18px}
+.col li{display:grid;grid-template-columns:12px minmax(0,1fr);gap:14px;align-items:baseline}
+.col li::before{content:"";width:10px;height:10px;background:var(--amber)}
+.col.no li::before{background:none;border:1.5px solid var(--ink-2)}
+
+/* 120 Hz */
+.hz{padding-block:clamp(72px,12vh,140px);background:var(--bg-2);overflow:hidden}
+.hz-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,96px);align-items:center}
+.hz h2{font-size:clamp(32px,4vw,56px);max-width:14ch}
+.hz p{margin-top:18px;color:var(--ink-2);max-width:46ch}
+.hz .tip{margin-top:24px;padding-left:16px;border-left:3px solid var(--amber);color:var(--ink)}
+.phone{justify-self:center;width:min(320px,76vw);aspect-ratio:9/16;background:#070B20;border:1px solid var(--shell-edge);border-radius:30px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;color:#C9D1EC;font-family:var(--f-display)}
+.lane{flex:1;position:relative;border:1px solid rgba(125,145,255,.2);border-radius:14px;background-image:linear-gradient(90deg,rgba(125,145,255,.08) 1px,transparent 1px);background-size:10% 100%}
+.lab{position:absolute;top:12px;left:14px;font-weight:600;font-size:17px;line-height:1.1}
+.lab small{display:block;font-family:var(--f-body);font-weight:400;color:#7E88AE;font-size:12px}
+.target{position:absolute;top:58%;left:8%;width:18px;height:18px;margin-top:-9px;border:2px solid #FFB23F;border-radius:50%;animation:sweep 3.2s infinite alternate}
+.hz60 .target{animation-timing-function:steps(10)}
+.hz120 .target{animation-timing-function:steps(20)}
+@keyframes sweep{to{left:calc(92% - 18px)}}
+.cap{font-family:var(--f-body);font-size:12px;color:#7E88AE;text-align:center}
+
+/* dúvidas */
+.faq{padding-block:clamp(72px,12vh,140px)}
+.faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:start}
+.faq h2{font-size:clamp(30px,3.6vw,50px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-child{border-top:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 2px;font-family:var(--f-display);font-weight:600;font-size:clamp(17px,1.4vw,20px)}
+.faq summary::-webkit-details-marker{display:none}
+.plus{flex:none;width:14px;height:14px;position:relative}
+.plus::before,.plus::after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;background:var(--amber-ink);transition:transform .3s var(--ease)}
+.plus::after{transform:rotate(90deg)}
+details[open] .plus::after{transform:rotate(0)}
+.faq details p{padding:0 2px 22px;color:var(--ink-2);max-width:60ch}
+details[open] p{animation:open .35s var(--ease)}
+@keyframes open{from{opacity:0;transform:translateY(-6px)}}
+
+/* chamada final */
+.final{padding-block:clamp(96px,16vh,180px)}
+.fill{font-size:clamp(50px,9vw,140px);font-weight:700;line-height:.92;letter-spacing:-.03em;max-width:11ch;color:transparent;background-image:linear-gradient(var(--amber-ink),var(--amber-ink)),linear-gradient(var(--ink),var(--ink));background-repeat:no-repeat;background-size:100% 100%,100% 100%;-webkit-background-clip:text;background-clip:text}
+.final p{margin-top:24px;max-width:50ch;color:var(--ink-2)}
+
+.foot{border-top:1px solid var(--line);padding-block:32px 128px;font-size:14px;color:var(--ink-2)}
+.foot .wrap{display:grid;gap:8px}
+
+/* barra fixa */
+.dock{position:fixed;z-index:50;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translate(-50%,170%);width:min(560px,100% - 24px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;background:var(--panel);border:1px solid var(--line);border-radius:6px;transition:transform .45s var(--ease)}
+.dock.show{transform:translate(-50%,0)}
+.dock .name{font-family:var(--f-display);font-weight:600;font-size:15px;line-height:1.2}
+.dock .name small{display:block;font-family:var(--f-body);font-weight:400;color:var(--ink-2);font-size:13px}
+.dock .btn{padding:11px 16px;font-size:15px;flex:none}
+
+/* mira no lugar do cursor */
+.cross{position:fixed;left:0;top:0;z-index:200;width:0;height:0;pointer-events:none;color:var(--ink);opacity:0;--gap:5px;transition:opacity .2s,--gap .25s var(--ease),color .2s}
+.cross.live{opacity:1}
+.cross i{position:absolute;background:currentColor;box-shadow:0 0 0 1px var(--bg)}
+.cross .h{width:9px;height:2px;top:-1px}
+.cross .l{right:var(--gap)}.cross .r{left:var(--gap)}
+.cross .v{width:2px;height:9px;left:-1px}
+.cross .t{bottom:var(--gap)}.cross .b{top:var(--gap)}
+.cross .c{width:3px;height:3px;left:-1.5px;top:-1.5px;border-radius:50%}
+.cross.lock{--gap:12px;color:var(--amber-ink)}
+html.crosshair,html.crosshair a,html.crosshair button,html.crosshair summary,html.crosshair .slot{cursor:none}
+
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:minmax(0,1fr);align-content:center;gap:22px}
+  .rig{max-width:min(420px,84%);padding-bottom:24px}
+  .lead{margin-top:12px}.stats{margin-top:18px}.actions{margin-top:22px}
+  .equip-grid,.hz-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
+  .equip-grid{gap:18px}
+  .intro{display:none}
+  .count{margin-top:10px}
+  .slots{display:flex;overflow-x:auto;gap:8px;border:0;margin-top:14px;padding:2px 2px 4px;scrollbar-width:none}
+  .slots li{flex:none}
+  .slot{grid-template-columns:10px auto;gap:10px;border:1px solid var(--line);padding:8px 12px}
+  .slot.active{padding-left:12px;border-color:var(--amber)}
+  .slot-short{display:none}
+  .d-text{min-height:0;font-size:15px}
+}
+@media (max-width:760px){
+  .match-grid{grid-template-columns:minmax(0,1fr)}
+  .split{height:1px}
+  .dock .name small{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+  <div class="wrap row">
+    <span class="brand"><i aria-hidden="true"></i><span>Loadout · Alienware Aurora</span></span>
+    <div class="nlinks" id="nlinks" role="tablist">
+      <button class="nlink" type="button" data-target="hero">Visão geral</button>
+      <button class="nlink" type="button" data-target="loadout">Loadout</button>
+      <button class="nlink" type="button" data-target="specs">Especificações</button>
+      <button class="nlink" type="button" data-target="match">Comparativo</button>
+      <button class="nlink" type="button" data-target="faq">Dúvidas</button>
+    </div>
+    <a class="ncta" href="https://a.co/d/0bFTWURA" target="_blank" rel="sponsored noopener">Ver preço</a>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="copy">
+      <div class="state" id="stateA" aria-hidden="true" style="visibility:hidden">
+        <p class="big">Abra o seu próximo loadout.</p>
+        <p class="hint" id="hint"><span class="mouse"></span>Role a página para abrir</p>
+      </div>
+      <div class="state" id="stateB">
+        <p class="tag">Configuração com RTX 4050 e Windows 11</p>
+        <h1>Alienware 16 Aurora</h1>
+        <p class="lead">Tela de 120 Hz, Wi-Fi 7 e 16 GB de memória num notebook de 16 polegadas. Analisado para quem joga Warzone e outros FPS competitivos.</p>
+        <ul class="stats">
+          <li><span class="k">Tela</span><span class="seg" data-seg="7"></span><span class="v">120 Hz</span></li>
+          <li><span class="k">Rede</span><span class="seg" data-seg="8"></span><span class="v">Wi-Fi 7</span></li>
+          <li><span class="k">Placa</span><span class="seg" data-seg="6"></span><span class="v">RTX 4050</span></li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="https://a.co/d/0bFTWURA" target="_blank" rel="sponsored noopener">Ver preço atual na Amazon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="link" href="#loadout">Ver o loadout completo</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rig" aria-hidden="true">
+      <div class="lid">
+        <div class="screen">
+          <div class="scan"></div>
+          <div class="ro tl scr-el">120 Hz<small>Taxa da tela</small></div>
+          <div class="ro tr scr-el">RTX 4050<small>6 GB GDDR6</small></div>
+          <div class="ro bl scr-el">Wi-Fi 7<small>Rede</small></div>
+          <div class="ro br scr-el">16 GB<small>DDR5</small></div>
+          <svg class="ch scr-el" viewBox="0 0 100 100" fill="none" stroke="#FFB23F" stroke-width="2.5"><circle cx="50" cy="50" r="22" stroke-opacity=".45"/><path d="M50 16v18M50 66v18M16 50h18M66 50h18"/><circle cx="50" cy="50" r="2.5" fill="#FFB23F" stroke="none"/></svg>
+          <div class="ready scr-el">Loadout pronto</div>
+        </div>
+      </div>
+      <div class="deck"></div>
+      <div class="glow"></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <p class="wrap"><strong>Análise independente,</strong> sem vínculo com a Dell ou a Alienware. Os botões levam à Amazon e eu posso receber comissão pelas compras feitas por eles, sem custo extra para você.</p>
+</div>
+
+<section class="equip" id="loadout">
+  <div class="wrap equip-grid">
+    <div>
+      <h2>Equipe peça por peça.</h2>
+      <p class="intro">Role a página ou toque em um slot. Cada um mostra o componente, o que ele muda na partida e a nossa nota para jogo competitivo.</p>
+      <p class="count">Slots equipados <b id="eqCount">1</b> de 6</p>
+      <ul class="slots" id="slotList"></ul>
+    </div>
+    <div class="detail" id="detail" aria-live="polite">
+      <div id="detailBody">
+        <p class="d-slot" id="dSlot"></p>
+        <span class="d-short" id="dShort"></span>
+        <p class="d-spec" id="dSpec"></p>
+        <p class="d-text" id="dText"></p>
+        <div class="seg d-bar" id="dBar" role="img"></div>
+        <p class="d-note" id="dNote"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="specs" id="specs">
+  <div class="wrap">
+    <h2>Ficha técnica completa.</h2>
+    <p class="intro">Além dos seis componentes do loadout, é isso que vem na caixa e no corpo do notebook.</p>
+    <div class="sgroups">
+      <div>
+        <p class="sgroup-h">Corpo e tela</p>
+        <div class="scards">
+          <div class="scard"><p class="k">Tamanho da tela</p><p class="v">16<span class="u">pol</span></p></div>
+          <div class="scard"><p class="k">Peso</p><p class="v">2,49<span class="u">kg</span></p></div>
+          <div class="scard"><p class="k">Cor</p><p class="v">Azul escuro</p></div>
+          <div class="scard"><p class="k">Teclado</p><p class="v">Retroilumin.</p></div>
+        </div>
+      </div>
+      <div>
+        <p class="sgroup-h">Conectividade</p>
+        <div class="scards">
+          <div class="scard"><p class="k">Rede sem fio</p><p class="v">Wi-Fi 7</p></div>
+          <div class="scard"><p class="k">Bluetooth</p><p class="v">5.4</p></div>
+          <div class="scard"><p class="k">USB</p><p class="v">3.2 Gen 1/2</p></div>
+          <div class="scard"><p class="k">Vídeo externo</p><p class="v">HDMI</p></div>
+        </div>
+      </div>
+      <div>
+        <p class="sgroup-h">Sistema e garantia</p>
+        <div class="scards">
+          <div class="scard"><p class="k">Sistema</p><p class="v">Windows 11<span class="u">Home</span></p></div>
+          <div class="scard"><p class="k">Fonte</p><p class="v">130<span class="u">W</span></p></div>
+          <div class="scard"><p class="k">Garantia de fábrica</p><p class="v">12<span class="u">meses</span></p></div>
+          <div class="scard"><p class="k">Extensão disponível</p><p class="v">Até 24<span class="u">meses</span></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="match" id="match">
+  <div class="wrap">
+    <h2>Antes de clicar, veja se combina com você.</h2>
+    <div class="match-grid">
+      <div class="col yes">
+        <h3>É para você se</h3>
+        <ul>
+          <li>Joga Warzone e outros FPS em configurações competitivas, priorizando FPS em vez de gráficos no máximo.</li>
+          <li>Quer sair das telas de 60 Hz e sentir a mira mais fluida.</li>
+          <li>Joga principalmente em casa, com o notebook na mesa, e só às vezes leva para outro lugar.</li>
+          <li>Quer o acabamento de uma linha gamer premium pagando pela configuração de entrada dela.</li>
+        </ul>
+      </div>
+      <div class="split" aria-hidden="true"></div>
+      <div class="col no">
+        <h3>Procure outra configuração se</h3>
+        <ul>
+          <li>Quer jogar tudo no ultra na resolução máxima da tela. Nesse caso, vale olhar versões com placas mais fortes.</li>
+          <li>Precisa carregar o notebook todos os dias. É um modelo de 16 polegadas, pensado mais para mesa do que para mochila.</li>
+          <li>Mantém muitos jogos grandes instalados ao mesmo tempo e não quer se preocupar com o espaço de 512 GB.</li>
+          <li>Não precisa de portabilidade. Pelo mesmo valor, um desktop costuma entregar mais desempenho.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hz" id="hz">
+  <div class="wrap hz-grid">
+    <div>
+      <h2>Mira mais fluida em 120 Hz.</h2>
+      <p>Uma tela comum de 60 Hz atualiza a imagem 60 vezes por segundo. A deste notebook atualiza 120 vezes, então o alvo em movimento aparece em mais posições intermediárias e fica mais fácil de acompanhar.</p>
+      <p class="tip">Em FPS competitivo, baixar a qualidade gráfica ajuda a placa a manter o jogo perto de 120 quadros por segundo, que é quando a tela mostra tudo o que pode.</p>
+    </div>
+    <div class="phone" id="phone" aria-hidden="true">
+      <div class="lane hz60"><span class="lab">60 Hz<small>Tela comum</small></span><span class="target"></span></div>
+      <div class="lane hz120"><span class="lab">120 Hz<small>Alienware 16 Aurora</small></span><span class="target"></span></div>
+      <p class="cap">Simulação ilustrativa em câmera lenta</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap faq-grid">
+    <h2>Dúvidas rápidas</h2>
+    <div>
+      <details>
+        <summary>Qual sistema operacional vem instalado?<span class="plus" aria-hidden="true"></span></summary>
+        <p>Esta configuração vem com Windows 11 Home. Existe também um anúncio com as mesmas peças e Ubuntu Linux, que costuma sair mais barato, mas nesse caso você mesmo precisaria instalar o Windows para jogar Warzone.</p>
+      </details>
+      <details>
+        <summary>Preciso de um roteador Wi-Fi 7?<span class="plus" aria-hidden="true"></span></summary>
+        <p>Para aproveitar as vantagens do Wi-Fi 7, sim. Com um roteador mais antigo o notebook funciona normalmente, no padrão que o roteador suporta. Em partida ranqueada, o cabo continua sendo a opção mais estável.</p>
+      </details>
+      <details>
+        <summary>A tela de 120 Hz faz diferença com essa placa?<span class="plus" aria-hidden="true"></span></summary>
+        <p>Faz, desde que o jogo rode perto de 120 quadros por segundo. Em FPS competitivo isso normalmente pede qualidade gráfica mais baixa e, se necessário, uma resolução menor que a nativa da tela.</p>
+      </details>
+      <details>
+        <summary>Por que esta página não mostra o preço?<span class="plus" aria-hidden="true"></span></summary>
+        <p>O preço na Amazon muda com frequência, inclusive em promoções relâmpago. Para você não ver um valor desatualizado, os botões levam direto ao anúncio com o preço e o parcelamento do momento.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="final">
+  <div class="wrap">
+    <h2 class="fill" id="fillText">Pronto para equipar?</h2>
+    <p>Confira o valor atualizado, o prazo de entrega e as opções de parcelamento antes de fechar a compra.</p>
+    <div class="actions">
+      <a class="btn" href="https://a.co/d/0bFTWURA" target="_blank" rel="sponsored noopener">Ver preço atual na Amazon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Esta é uma página independente de análise e não tem vínculo com a Dell. Alienware, Dell, NVIDIA, GeForce, Intel e Amazon são marcas de seus respectivos donos.</p>
+    <p>Como associado da Amazon, recebo por compras qualificadas.</p>
+    <p>Especificações conferidas no anúncio da Amazon Brasil em setembro de 2026.</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock" inert>
+  <span class="name">Alienware 16 Aurora<small>RTX 4050, 120 Hz, Wi-Fi 7</small></span>
+  <a class="btn" href="https://a.co/d/0bFTWURA" target="_blank" rel="sponsored noopener">Ver preço atual</a>
+</div>
+
+<div class="cross" aria-hidden="true"><i class="h l"></i><i class="h r"></i><i class="v t"></i><i class="v b"></i><i class="c"></i></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var SLOTS=[
+    {slot:'Placa de vídeo',spec:'NVIDIA GeForce RTX 4050, 6 GB GDDR6',short:'RTX 4050',note:6,text:'Roda Warzone em configurações competitivas, com gráficos baixos ou médios, que é como a maioria dos jogadores prioriza FPS. Não é a placa para jogar tudo no ultra na resolução máxima da tela.'},
+    {slot:'Tela',spec:'16 polegadas, WQXGA 2560 × 1600, 120 Hz',short:'120 Hz',note:7,text:'Mostra o dobro de quadros de uma tela comum de 60 Hz, o que ajuda a acompanhar alvo em movimento. Para chegar perto disso em FPS, vale reduzir a qualidade gráfica do jogo.'},
+    {slot:'Rede',spec:'Wi-Fi 7',short:'Wi-Fi 7',note:8,text:'O padrão de Wi-Fi mais recente. Para aproveitar de verdade, o roteador também precisa ser Wi-Fi 7. Em partida ranqueada, cabo continua sendo a conexão mais estável.'},
+    {slot:'Processador',spec:'Intel Core 5 210H',short:'Core 5',note:6,text:'Processador da linha H, feita para notebooks de desempenho. Dá conta do jogo e do dia a dia, mas é a opção de entrada da linha Aurora.'},
+    {slot:'Memória',spec:'16 GB DDR5',short:'16 GB',note:7,text:'Quantidade confortável para jogar hoje, inclusive com Discord e navegador abertos em segundo plano.'},
+    {slot:'Armazenamento',spec:'SSD de 512 GB',short:'512 GB',note:5,text:'Rápido para carregar partidas, mas enche logo. Warzone e outros jogos grandes ocupam bastante espaço, então conte com escolher o que fica instalado.'}
+  ];
+  function $(s,r){return (r||document).querySelector(s)}
+  function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))}
+  function segs(n){var h='';for(var k=0;k<10;k++){h+='<i class="'+(k<n?'lit':'')+'"></i>'}return h}
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGsap=typeof window.gsap!=='undefined'&&typeof window.ScrollTrigger!=='undefined';
+
+  $$('[data-seg]').forEach(function(el){el.innerHTML=segs(+el.dataset.seg)});
+
+  var list=$('#slotList');
+  list.innerHTML=SLOTS.map(function(s,i){
+    return '<li><button type="button" class="slot" data-i="'+i+'" aria-controls="detail"><span class="mark" aria-hidden="true"></span><span class="slot-name">'+s.slot+'</span><span class="slot-short">'+s.short+'</span></button></li>';
+  }).join('');
+  var buttons=$$('.slot',list);
+  var d={body:$('#detailBody'),slot:$('#dSlot'),short:$('#dShort'),spec:$('#dSpec'),text:$('#dText'),bar:$('#dBar'),note:$('#dNote')};
+  var current=-1,equipST=null;
+
+  function setSlot(i,animate){
+    if(i===current)return;
+    current=i;var s=SLOTS[i];
+    d.slot.textContent=s.slot;d.short.textContent=s.short;d.spec.textContent=s.spec;d.text.textContent=s.text;
+    d.bar.innerHTML=segs(s.note);d.bar.setAttribute('aria-label','Nota '+s.note+' de 10');
+    d.note.textContent='Nota '+s.note+' de 10 para jogo competitivo';
+    buttons.forEach(function(b,k){
+      b.classList.toggle('on',k<=i);b.classList.toggle('active',k===i);
+      if(k===i){b.setAttribute('aria-current','true')}else{b.removeAttribute('aria-current')}
+    });
+    $('#eqCount').textContent=i+1;
+    var active=buttons[i];
+    if(list.scrollWidth>list.clientWidth){list.scrollTo({left:active.parentNode.offsetLeft-16,behavior:reduce?'auto':'smooth'})}
+    if(animate&&hasGsap&&!reduce){
+      gsap.fromTo(d.body,{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power3.out',overwrite:true});
+      gsap.fromTo(d.short,{yPercent:35,opacity:0},{yPercent:0,opacity:1,duration:.5,ease:'power3.out',overwrite:true});
+      gsap.fromTo($$('i.lit',d.bar),{scaleY:0},{scaleY:1,stagger:.04,duration:.25,ease:'power2.out'});
+    }
+  }
+  setSlot(0,false);
+
+  list.addEventListener('click',function(e){
+    var b=e.target.closest('.slot');if(!b)return;
+    var i=+b.dataset.i;
+    if(equipST){
+      var y=equipST.start+(equipST.end-equipST.start)*((i+.5)/SLOTS.length);
+      window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+    }else{setSlot(i,true)}
+  });
+
+  if(hasGsap){
+    gsap.registerPlugin(ScrollTrigger);
+    var mm=gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)',function(){
+      var A=$('#stateA'),B=$('#stateB'),lid=$('.lid');
+      gsap.set(A,{autoAlpha:1});
+      A.removeAttribute('aria-hidden');
+      gsap.set(B,{autoAlpha:0,y:40});
+      gsap.set(lid,{rotationX:-84,transformOrigin:'50% 100%'});
+      gsap.set('.glow',{opacity:0});
+      gsap.set('.scr-el',{opacity:0});
+
+      var tl=gsap.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#hero',start:'top 56px',end:'+=150%',scrub:.7,pin:true,anticipatePin:1}});
+      tl.to('#hint',{autoAlpha:0,duration:.1},0)
+        .to(lid,{rotationX:0,duration:.55,ease:'power2.inOut'},.02)
+        .to(A,{autoAlpha:0,y:-40,duration:.2},.25)
+        .to('.glow',{opacity:1,duration:.25},.35)
+        .to('.scr-el',{opacity:1,stagger:.03,duration:.08},.5)
+        .to(B,{autoAlpha:1,y:0,duration:.25},.5)
+        .fromTo('#stateB .seg i.lit',{scaleY:0},{scaleY:1,stagger:.012,duration:.05},.68)
+        .to({},{duration:.15});
+
+      if(window.matchMedia('(min-height: 560px)').matches){
+        equipST=ScrollTrigger.create({
+          trigger:'#loadout',start:'top 56px',
+          end:function(){return '+='+Math.round(window.innerHeight*SLOTS.length*.6)},
+          pin:true,
+          onUpdate:function(self){setSlot(Math.min(SLOTS.length-1,Math.floor(self.progress*SLOTS.length)),true)}
+        });
+      }
+
+      var st={trigger:'.match-grid',start:'top 75%'};
+      gsap.from('.col.yes li',{x:-70,opacity:0,stagger:.08,duration:.7,ease:'power3.out',scrollTrigger:st});
+      gsap.from('.col.no li',{x:70,opacity:0,stagger:.08,duration:.7,ease:'power3.out',scrollTrigger:{trigger:'.match-grid',start:'top 75%'}});
+      gsap.from('.split',{scaleY:0,transformOrigin:'50% 0%',duration:.9,ease:'power2.out',scrollTrigger:{trigger:'.match-grid',start:'top 75%'}});
+
+      gsap.fromTo('#phone',{scale:.8,rotation:-6,y:80},{scale:1,rotation:0,y:0,ease:'none',scrollTrigger:{trigger:'#hz',start:'top bottom',end:'center center',scrub:.6}});
+
+      gsap.fromTo('#fillText',{backgroundSize:'0% 100%, 100% 100%'},{backgroundSize:'100% 100%, 100% 100%',ease:'none',scrollTrigger:{trigger:'#final',start:'top 80%',end:'center 55%',scrub:true}});
+
+      return function(){equipST=null;A.setAttribute('aria-hidden','true')};
+    });
+    if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){ScrollTrigger.refresh()})}
+  }
+
+  var navLinks=$$('.nlink'),navSections=navLinks.map(function(b){return document.getElementById(b.dataset.target)});
+  navLinks.forEach(function(b){b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.target);
+    var y=t.getBoundingClientRect().top+window.pageYOffset-56;
+    window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+  })});
+  function navSpy(){
+    var pos=window.scrollY+80,best=0;
+    navSections.forEach(function(s,i){if(s&&s.offsetTop<=pos)best=i});
+    navLinks.forEach(function(b,i){b.classList.toggle('on',i===best)});
+    $('#siteNav').classList.toggle('solid',window.scrollY>4);
+  }
+  window.addEventListener('scroll',navSpy,{passive:true});
+  window.addEventListener('resize',navSpy);
+  navSpy();
+
+  var dock=$('#dock');
+  function dockCheck(){
+    var show=$('#loadout').getBoundingClientRect().top<window.innerHeight*.6&&$('#final').getBoundingClientRect().top>window.innerHeight*.85;
+    dock.classList.toggle('show',show);dock.inert=!show;
+  }
+  window.addEventListener('scroll',dockCheck,{passive:true});
+  window.addEventListener('resize',dockCheck);
+  dockCheck();
+
+  if(window.matchMedia('(pointer: fine)').matches){
+    document.documentElement.classList.add('crosshair');
+    var c=$('.cross'),x=0,y=0,tx=0,ty=0,started=false;
+    window.addEventListener('pointermove',function(e){
+      tx=e.clientX;ty=e.clientY;
+      if(!started){x=tx;y=ty;started=true}
+      c.classList.add('live');
+    },{passive:true});
+    document.documentElement.addEventListener('pointerleave',function(){c.classList.remove('live')});
+    document.addEventListener('pointerover',function(e){c.classList.toggle('lock',!!e.target.closest('a,button,summary'))});
+    (function loop(){
+      var k=reduce?1:.35;x+=(tx-x)*k;y+=(ty-y)*k;
+      c.style.transform='translate3d('+x+'px,'+y+'px,0)';
+      requestAnimationFrame(loop);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
